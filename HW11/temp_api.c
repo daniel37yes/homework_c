@@ -1,12 +1,9 @@
-// temp_api.c
-// Реализации функций для работы с температурными данными.
+#include "temp_api.h" 
+#include <stdio.h>    
+#include <string.h>   
+#include <limits.h>  
 
-#include "temp_api.h" // Включаем заголовочный файл с прототипами
-#include <stdio.h>    // Для функций ввода/вывода
-#include <string.h>   // Для memcpy 
-#include <limits.h>   // Для INT_MAX, INT_MIN
-
-// Функция для обмена местами двух записей TemperatureData
+// замена местами
 void changeIJ(TemperatureData* info, int i, int j) {
     TemperatureData temp;
     temp = info[i];
@@ -61,10 +58,10 @@ int AddInfo(SensorDataCollection* data) {
     AddRecord(data->info, data->number++, 2022, 9, 2, -9);
     AddRecord(data->info, data->number++, 2021, 1, 7, 8);
     AddRecord(data->info, data->number++, 2021, 9, 5, 1);
-    AddRecord(data->info, data->number++, 2021, 1, 15, -5); // Добавляем еще данные для января 2021
-    AddRecord(data->info, data->number++, 2021, 1, 20, 0);  // И еще для января 2021
-    AddRecord(data->info, data->number++, 2022, 3, 10, 12); // Данные для марта 2022
-    AddRecord(data->info, data->number++, 2022, 3, 20, 18); // Еще для марта 2022
+    AddRecord(data->info, data->number++, 2021, 1, 15, -5); 
+    AddRecord(data->info, data->number++, 2021, 1, 20, 0);  
+    AddRecord(data->info, data->number++, 2022, 3, 10, 12); 
+    AddRecord(data->info, data->number++, 2022, 3, 20, 18); 
     return data->number;
 }
 

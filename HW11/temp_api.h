@@ -28,14 +28,14 @@ void load_bin_d(SensorDataCollection* data);
 
 void save_bin_d(SensorDataCollection* data);
 
-// Функция для вывода всех записей в удобочитаемом формате
+// Функция для вывода всех записей
 void print_records(const SensorDataCollection* data);
 
-// Функция для вывода статистики по заданному месяцу
+// Функция статистики по заданному месяцу
 
 void print_monthly_stats(const SensorDataCollection* data, int month);
 
-// Функция для вывода статистики за год
+// Функция статистики за год
 
 void print_yearly_stats(const SensorDataCollection* data);
 
