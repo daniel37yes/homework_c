@@ -25,52 +25,51 @@
 int main() {
     FILE *input = fopen("input.txt", "r");
     FILE *output = fopen("output.txt", "w");
-    
-    if (!input || !output) {
-        perror("Error opening files");
-        if (input) fclose(input);
-        if (output) fclose(output);
-        return 1;
-    }
 
     char str[MAX_LENGTH];
     char longest_word[MAX_LENGTH] = "";
     int max_length = 0;
     int current_length = 0;
-    int word_start = 0;
+    char *word_start = str;
 
-    // Читаем строку из файла
+    // Читаем строку 
     if (fgets(str, MAX_LENGTH, input) == NULL) {
         fclose(input);
         fclose(output);
         return 1;
     }
 
-    // Обрабатываем строку
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (isalpha(str[i])) {
-            if (current_length == 0) {
-                word_start = i;
-            }
+    // Удаляем символ новой строки
+    str[strcspn(str, "\n")] = '\0';
+
+  
+    for (char *p = str; *p != '\0'; p++) {
+        if (isalpha(*p)) {
             current_length++;
         } else {
             if (current_length > max_length) {
                 max_length = current_length;
-                strncpy(longest_word, &str[word_start], current_length);
-                longest_word[current_length] = '\0';
+                strncpy(longest_word, word_start, max_length);
+                longest_word[max_length] = '\0';
             }
             current_length = 0;
+            word_start = p + 1;
         }
     }
     
     // Проверяем последнее слово в строке
     if (current_length > max_length) {
-        strncpy(longest_word, &str[word_start], current_length);
+        strncpy(longest_word, word_start, current_length);
         longest_word[current_length] = '\0';
+        max_length = current_length;
     }
 
-    // Записываем результат в файл
-    if (max_length > 0) {
+    // Если вся строка - одно слово
+    if (max_length == 0 && strlen(str) > 0) {
+        strcpy(longest_word, str);
+    }
+
+    if (strlen(longest_word) > 0) {
         fprintf(output, "%s", longest_word);
     }
 

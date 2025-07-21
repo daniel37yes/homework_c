@@ -23,7 +23,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define MAX_NUMBERS 100  // Максимальное количество чисел в строке
+#define MAX_NUMBERS 1000  // Максимальное количество чисел в строке
 #define MAX_STRING 1001  // Максимальная длина строки
 
 // Функция сравнения для qsort
@@ -34,13 +34,6 @@ int compare(const void *a, const void *b) {
 int main() {
     FILE *input = fopen("input.txt", "r");
     FILE *output = fopen("output.txt", "w");
-    
-    if (!input || !output) {
-        perror("Error opening files");
-        if (input) fclose(input);
-        if (output) fclose(output);
-        return 1;
-    }
 
     char str[MAX_STRING];
     int numbers[MAX_NUMBERS];
